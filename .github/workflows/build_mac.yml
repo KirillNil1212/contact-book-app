@@ -1,7 +1,8 @@
 name: Build macOS App
 
 on:
-  workflow_dispatch:  # Позволяет запускать сборку вручную кнопкой
+  push:               # Запуск автоматически при любом сохранении
+  workflow_dispatch:  # Кнопка для ручного запуска (на всякий случай)
 
 jobs:
   build:
@@ -24,9 +25,7 @@ jobs:
     - name: Build with PyInstaller
       run: |
         # Собираем приложение для macOS
-        # Обрати внимание: 
-        # 1. Иконку берем .icns (для отображения в Доке)
-        # 2. Разделитель в --add-data двоеточие (:), а не точка с запятой
+        # Используем разделитель (:) для путей и иконку .icns
         pyinstaller --noconfirm --onefile --windowed --icon="assets/cont_icon.icns" --add-data "assets:assets" --name "ContactPro" main.py
 
     - name: Upload Artifact
