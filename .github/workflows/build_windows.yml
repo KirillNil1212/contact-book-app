@@ -1,0 +1,35 @@
+name: Build Windows App
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest  # Берем виртуальную Windows
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pillow pyinstaller
+
+    - name: Build with PyInstaller
+      run: |
+        # Для Windows используем разделитель (;)
+        # Иконку можно оставить gif, так как Pillow установлен
+        pyinstaller --noconfirm --onefile --windowed --icon="assets/cont_icon.gif" --add-data "assets;assets" --name "ContactPro" main.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ContactPro-Windows
+        path: dist/ContactPro.exe
