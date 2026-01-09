@@ -1,0 +1,36 @@
+name: Build macOS App
+
+on:
+  workflow_dispatch:  # Позволяет запускать сборку вручную кнопкой
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pillow pyinstaller
+
+    - name: Build with PyInstaller
+      run: |
+        # Собираем приложение для macOS
+        # Обрати внимание: 
+        # 1. Иконку берем .icns (для отображения в Доке)
+        # 2. Разделитель в --add-data двоеточие (:), а не точка с запятой
+        pyinstaller --noconfirm --onefile --windowed --icon="assets/cont_icon.icns" --add-data "assets:assets" --name "ContactPro" main.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ContactPro-macOS
+        path: dist/ContactPro.app
