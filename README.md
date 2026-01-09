@@ -113,11 +113,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Или вручную:
-```bash
-pip install cryptography
-```
-
 ### 4. Запуск
 ```bash
 python main.py
