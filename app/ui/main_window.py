@@ -85,7 +85,7 @@ class ContactApp:
 
     def setup_window(self):
         """Базовая настройка главного окна."""
-        self.root.title("Контакты PRO v1.0")
+        self.root.title("Адресник v1.0")
         self.width = 1100
         self.height = 600
         self.min_width = 900
