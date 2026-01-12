@@ -51,7 +51,7 @@
 ```AddressBook/
     main.py
         app/
-            database.py
+            database.py    Работа базы данных
             __init__.py
         ui/
             __init__.py
@@ -60,7 +60,7 @@
             forms.py             Окно добавления контакта
             about.py             Окно о программе  в пункте меню
         components/        
-            __init__.py      Пустой
+            __init__.py     
             main_menu.py     Логика верхнего меню
             dashboard.py     Панель с буфером и днями рождения
             contact_tree.py  Таблица контактов
