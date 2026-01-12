@@ -48,7 +48,7 @@
 
 ## Структура проекта
 
-AddressBook/
+```AddressBook/
     main.py
         app/
             database.py
@@ -64,7 +64,7 @@ AddressBook/
             main_menu.py     Логика верхнего меню
             dashboard.py     Панель с буфером и днями рождения
             contact_tree.py  Таблица контактов
-            
+```            
 ## Установка и запуск
 
 Для работы приложения требуется установленный **Python 3.8+**.
